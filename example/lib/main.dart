@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
 
   void initPlatformState() {
     // sync call
-    String response = nativeGreeting("John Smith");
+    String response = nativeGreeting("Froggy McDale");
 
     setState(() {
       _response = response;
@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Flutter Rust FFI'),
+          title: const Text('Flutter Rus t'),
         ),
         body: Center(
           child: Text(

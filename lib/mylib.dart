@@ -24,7 +24,7 @@ typedef FreeStringFuncNative = Void Function(Pointer<Utf8>);
 ///////////////////////////////////////////////////////////////////////////////
 
 final DynamicLibrary nativeExampleLib = Platform.isAndroid
-    ? DynamicLibrary.open("libexample.so")
+    ? DynamicLibrary.open("libgreet.so")
     : DynamicLibrary.process();
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@ String nativeGreeting(String name) {
 
   // Free the string pointer, as we already have
   // an owned String to return
-  print("- Freing the native char*");
+  print("- Freeing the native char*");
   freeCString(resultPointer);
 
   return greetingStr;

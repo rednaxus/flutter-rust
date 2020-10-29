@@ -9,7 +9,7 @@ pub extern fn rust_greeting(to: *const c_char) -> *mut c_char {
         Ok(string) => string,
     };
 
-    CString::new("Hello ".to_owned() + recipient).unwrap().into_raw()
+    CString::new("Yo Ho Mo! ".to_owned() + recipient).unwrap().into_raw()
 }
 
 #[no_mangle]

@@ -1,4 +1,4 @@
-package org.mylib.mylib_example
+package org.mylib.mylib_greet
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

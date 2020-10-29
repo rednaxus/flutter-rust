@@ -1,11 +1,11 @@
 [package]
 name = "example-rs"
 version = "0.1.0"
-authors = ["Brick Pop <itsbrickpop@gmail.com>"]
+authors = ["the Kaiser <alan@on40.org>"]
 edition = "2018"
 
 [lib]
-name = "example"
+name = "greet"
 crate-type = ["staticlib", "cdylib"]
 
 [dependencies]
