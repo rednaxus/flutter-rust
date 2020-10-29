@@ -39,11 +39,11 @@ Returning strings or structs may require using `unsafe` blocks. Returned strings
 
 Generated artifacts:
 - Android libraries
-  - `target/aarch64-linux-android/release/libexample.so`
-  - `target/armv7-linux-androideabi/release/libexample.so`
-  - `target/i686-linux-android/release/libexample.so`
+  - `target/aarch64-linux-android/release/libgreet.so`
+  - `target/armv7-linux-androideabi/release/libgreet.so`
+  - `target/i686-linux-android/release/libgreet.so`
 - iOS library
-  - `target/universal/release/libexample.a`
+  - `target/universal/release/libgreet.a`
 - Bindings header
   - `target/bindings.h`
 
@@ -65,11 +65,11 @@ Ensure that `ios/mylib.podspec` includes the following directives:
 ...
 ```
 
-On `flutter/ios`, place a symbolic link to the `libexample.a` file
+On `flutter/ios`, place a symbolic link to the `libgreet.a` file
 
 ```sh
 $ cd flutter/ios
-$ ln -s ../rust/target/universal/release/libexample.a .
+$ ln -s ../rust/target/universal/release/libgreet.a .
 ```
 
 Append the generated function signatures from `rust/target/bindings.h` into `flutter/ios/Classes/MylibPlugin.h`
@@ -81,7 +81,7 @@ $ cat ../rust/target/bindings.h >> Classes/MylibPlugin.h
 
 In our case, it will append `char *rust_greeting(const char *to);` and `void rust_cstr_free(char *s);`
 
-NOTE: By default, XCode will skip bundling the `libexample.a` library if it detects that it is not being used. To force its inclusion, add dummy invocations in `SwiftMylibPlugin.swift` that use every single native function that you use from Flutter:
+NOTE: By default, XCode will skip bundling the `libgreet.a` library if it detects that it is not being used. To force its inclusion, add dummy invocations in `SwiftMylibPlugin.swift` that use every single native function that you use from Flutter:
 
 ```kotlin
 ...
@@ -101,7 +101,7 @@ If you won't be using Flutter channels, the rest of methods can be left empty.
 
 #### Android
 
-Similarly as we did on iOS with `libexample.a`, create symlinks pointing to the binary libraries on `rust/target`.
+Similarly as we did on iOS with `libgreet.a`, create symlinks pointing to the binary libraries on `rust/target`.
 
 You should have the following structure on `flutter/android` for each architecture:
 
@@ -110,13 +110,13 @@ src
 └── main
     └── jniLibs
         ├── arm64-v8a
-        │   └── libexample.so@ -> ../../../../../rust/target/aarch64-linux-android/release/libexample.so
+        │   └── libgreet.so@ -> ../../../../../rust/target/aarch64-linux-android/release/libgreet.so
         ├── armeabi-v7a
-        │   └── libexample.so@ -> ../../../../../rust/target/armv7-linux-androideabi/release/libexample.so
+        │   └── libgreet.so@ -> ../../../../../rust/target/armv7-linux-androideabi/release/libgreet.so
         ├── x86
-        │   └── libexample.so@ -> ../../../../../rust/target/i686-linux-android/release/libexample.so
+        │   └── libgreet.so@ -> ../../../../../rust/target/i686-linux-android/release/libgreet.so
         └── x86_64
-            └── libexample.so@ -> ../../../../../rust/target/x86_64-linux-android/release/libexample.so
+            └── libgreet.so@ -> ../../../../../rust/target/x86_64-linux-android/release/libgreet.so
 ```
 
 As before, if you are not using Flutter channels, the methods within `android/src/main/kotlin/org/mylib/mylib/MylibPlugin.kt` can be left empty.
@@ -128,7 +128,7 @@ In `/lib/mylib.dart`, initialize the function bindings from Dart and implement a
 Load the library: 
 ```dart
 final DynamicLibrary nativeExampleLib = Platform.isAndroid
-    ? DynamicLibrary.open("libexample.so")
+    ? DynamicLibrary.open("libgreet.so")
     : DynamicLibrary.process();
 ```
 
